@@ -9,7 +9,7 @@ brew install kubeseal
 Install `sealed-secrets` chart into `kube-system`, e.g.
 
 ```
-argocd app create sealed-secrets --repo https://kubernetes-charts.storage.googleapis.com --helm-chart sealed-secrets --revision '*' --dest-server https://kubernetes.default.svc --dest-namespace kube-system 
+argocd app create sealed-secrets --repo https://kubernetes-charts.storage.googleapis.com --helm-chart sealed-secrets --revision '1.5.0' --dest-server https://kubernetes.default.svc --dest-namespace kube-system 
 argocd app sync sealed-secrets
 ```
 
