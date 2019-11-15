@@ -13,16 +13,12 @@ argocd app create sealed-secrets --repo https://kubernetes-charts.storage.google
 argocd app sync sealed-secrets
 ```
 
-```
-kubectl create ns my-secrets
-```
-
 ### 2. Create And Seal Secret
 
 Create the secret:
 
 ```
-echo -n bar | kubectl create secret generic mysecret --dry-run --from-file=foo=/dev/stdin -o json >mysecret.json
+echo -n bar | kubectl create secret generic mysecret --dry-run --from-file=foo=/dev/stdin -o json > mysecret.json
 ```
 
 Seal it:
@@ -37,14 +33,14 @@ git push
 ### 3. Create An App
 
 ```
-argocd app create my-secrets --repo https://github.com/gitops-workshop/argo-cd-demos.git --path . --revision 'master' --dest-server https://kubernetes.default.svc --dest-namespace my-secrets
+argocd app create my-secrets --repo https://github.com/gitops-workshop/argo-cd-demos.git --path . --revision 'master' --dest-server https://kubernetes.default.svc --dest-namespace default
 argocd app sync my-secrets
 ```
 
 Open the UI to observe the created secret, or use CLI:
 
 ```
-kubectl -n my-secrets get secrets -o yaml
+kubectl -n default get secrets -o yaml
 ```
 
 Decode `YmFy` using http://bit.ly/cnvcode.
@@ -54,5 +50,4 @@ Decode `YmFy` using http://bit.ly/cnvcode.
 ```
 argocd app delete my-secrets
 argocd app delete sealed-secrets
-kubectl delete ns my-secrets
 ```
