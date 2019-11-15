@@ -24,7 +24,19 @@ echo -n bar | kubectl create secret generic mysecret --dry-run --from-file=foo=/
 Seal it:
 
 ```
-kubeseal --cert http://127.0.0.1:8001/api/v1/namespaces/kube-system/services/sealed-secrets/proxy/v1/cert.pem < mysecret.json > mysealedsecret.json
+kubeseal --cert Alexander Matyushentsev 13:59
+https://argo-cd-kubecon.apps.argoproj.io/secret/cert.pem < mysecret.json > mysealedsecret.json
+```
+
+Delete the un-sealed secret:
+
+``
+rm mysecret.json
+```
+
+Commit the changes:
+
+```
 git add mysealedsecret.json
 git commit -am 'Add secret'
 git push
