@@ -24,13 +24,12 @@ echo -n bar | kubectl create secret generic mysecret --dry-run --from-file=foo=/
 Seal it:
 
 ```
-kubeseal --cert Alexander Matyushentsev 13:59
-https://argo-cd-kubecon.apps.argoproj.io/secret/cert.pem < mysecret.json > mysealedsecret.json
+kubeseal --cert https://argo-cd-kubecon.apps.argoproj.io/secret/cert.pem < mysecret.json > mysealedsecret.json
 ```
 
 Delete the un-sealed secret:
 
-``
+```
 rm mysecret.json
 ```
 
