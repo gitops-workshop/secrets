@@ -1,6 +1,6 @@
-# Secrets
+# Demo: Secrets
 
-### Set-up:
+### 1. Set-Up
 
 ```
 brew install kubeseal
@@ -17,7 +17,7 @@ argocd app sync sealed-secrets
 kubectl create ns my-secrets
 ```
 
-### Example:
+### 2. Create And Seal Secret
 
 Create the secret:
 
@@ -34,7 +34,7 @@ git commit -am 'Add secret'
 git push
 ```
 
-Create the app:
+### 3. Create An App
 
 ```
 argocd app create my-secrets --repo https://github.com/gitops-workshop/argo-cd-demos.git --path . --revision 'master' --dest-server https://kubernetes.default.svc --dest-namespace my-secrets
@@ -49,7 +49,7 @@ kubectl -n my-secrets get secrets -o yaml
 
 Decode `YmFy` using http://bit.ly/cnvcode.
 
-### Clean-up:
+### Clean-Up
 
 ```
 argocd app delete my-secrets
